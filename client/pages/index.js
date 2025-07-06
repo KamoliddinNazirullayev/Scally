@@ -2,46 +2,50 @@ import { useState } from 'react';
 import { 
   TrendingUp, 
   TrendingDown, 
-  Package, 
+  Target, 
   DollarSign, 
   Users, 
   AlertTriangle,
   Eye,
-  EyeOff
+  EyeOff,
+  Calendar,
+  MessageSquare,
+  BarChart3,
+  Zap
 } from 'lucide-react';
 import DashboardLayout from '../components/layout/DashboardLayout';
 import { useAuth } from '../hooks/useAuth';
 
-// Mock data for demonstration
+// Mock data for marketing agency
 const kpiData = [
   {
-    title: 'Total Revenue',
-    value: '$124,563',
-    change: '+12.5%',
+    title: 'Jami daromad',
+    value: '124,563,000 so\'m',
+    change: '+15.2%',
     trend: 'up',
     icon: DollarSign,
     color: 'bg-green-500',
   },
   {
-    title: 'Active Projects',
-    value: '24',
-    change: '+3',
+    title: 'Faol kampaniyalar',
+    value: '18',
+    change: '+4',
     trend: 'up',
-    icon: Package,
+    icon: Target,
     color: 'bg-blue-500',
   },
   {
-    title: 'Team Members',
-    value: '12',
-    change: '+1',
+    title: 'Mijozlar soni',
+    value: '45',
+    change: '+7',
     trend: 'up',
     icon: Users,
     color: 'bg-purple-500',
   },
   {
-    title: 'Pending Tasks',
-    value: '8',
-    change: '-2',
+    title: 'Kutilayotgan loyihalar',
+    value: '12',
+    change: '-3',
     trend: 'down',
     icon: AlertTriangle,
     color: 'bg-yellow-500',
@@ -51,31 +55,31 @@ const kpiData = [
 const recentActivity = [
   {
     id: 1,
-    type: 'project',
-    message: 'New project "E-commerce Platform" created',
-    user: 'John Doe',
-    time: '2 hours ago',
+    type: 'campaign',
+    message: 'Yangi Instagram kampaniyasi "Summer Sale" yaratildi',
+    user: 'Aziza Karimova',
+    time: '2 soat oldin',
   },
   {
     id: 2,
-    type: 'invoice',
-    message: 'Invoice #INV-2024-001 paid',
-    user: 'Jane Smith',
-    time: '4 hours ago',
+    type: 'client',
+    message: 'Yangi mijoz "TechStart" qo\'shildi',
+    user: 'Dilshod Toshmatov',
+    time: '4 soat oldin',
   },
   {
     id: 3,
-    type: 'inventory',
-    message: 'Low stock alert for Product XYZ',
-    user: 'Mike Johnson',
-    time: '6 hours ago',
+    type: 'project',
+    message: 'Loyiha "E-commerce Website" tugatildi',
+    user: 'Malika Yusupova',
+    time: '6 soat oldin',
   },
   {
     id: 4,
-    type: 'hr',
-    message: 'New employee Sarah Wilson joined',
-    user: 'HR Team',
-    time: '1 day ago',
+    type: 'content',
+    message: 'Yangi kontent taqvimi yaratildi',
+    user: 'Jamoa',
+    time: '1 kun oldin',
   },
 ];
 
@@ -89,10 +93,10 @@ export default function Dashboard() {
         {/* Welcome Header */}
         <div className="bg-white rounded-lg shadow-sm p-6">
           <h1 className="text-2xl font-bold text-gray-900">
-            Welcome back, {user?.firstName || 'User'}!
+            Xush kelibsiz, {user?.firstName || 'Foydalanuvchi'}!
           </h1>
           <p className="text-gray-600 mt-1">
-            Here's what's happening with your business today.
+            Bugungi marketing agentligingiz faoliyati haqida ma'lumot.
           </p>
         </div>
 
@@ -122,35 +126,35 @@ export default function Dashboard() {
                   }`}>
                     {kpi.change}
                   </span>
-                  <span className="ml-2 text-sm text-gray-500">from last month</span>
+                  <span className="ml-2 text-sm text-gray-500">o'tgan oydan</span>
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Revenue Overview */}
+        {/* Marketing Performance Overview */}
         <div className="bg-white rounded-lg shadow-sm p-6">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-lg font-semibold text-gray-900">Revenue Overview</h3>
+            <h3 className="text-lg font-semibold text-gray-900">Marketing natijalari</h3>
             <button
               onClick={() => setShowRevenue(!showRevenue)}
               className="flex items-center text-sm text-gray-600 hover:text-gray-900"
             >
               {showRevenue ? <EyeOff className="w-4 h-4 mr-1" /> : <Eye className="w-4 h-4 mr-1" />}
-              {showRevenue ? 'Hide' : 'Show'} Revenue
+              {showRevenue ? 'Yashirish' : 'Ko\'rsatish'}
             </button>
           </div>
           {showRevenue && (
             <div className="h-64 bg-gray-50 rounded-lg flex items-center justify-center">
-              <p className="text-gray-500">Revenue chart will be displayed here</p>
+              <p className="text-gray-500">Marketing natijalari grafigi bu yerda ko'rsatiladi</p>
             </div>
           )}
         </div>
 
         {/* Recent Activity */}
         <div className="bg-white rounded-lg shadow-sm p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-6">Recent Activity</h3>
+          <h3 className="text-lg font-semibold text-gray-900 mb-6">So'nggi faoliyat</h3>
           <div className="space-y-4">
             {recentActivity.map((activity) => (
               <div key={activity.id} className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
@@ -162,7 +166,7 @@ export default function Dashboard() {
                 <div className="flex-1">
                   <p className="text-sm font-medium text-gray-900">{activity.message}</p>
                   <p className="text-xs text-gray-500">
-                    by {activity.user} • {activity.time}
+                    {activity.user} tomonidan • {activity.time}
                   </p>
                 </div>
               </div>
@@ -170,26 +174,57 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Quick Actions */}
+        {/* Quick Actions for Marketing Agency */}
         <div className="bg-white rounded-lg shadow-sm p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-6">Quick Actions</h3>
+          <h3 className="text-lg font-semibold text-gray-900 mb-6">Tezkor amallar</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <button className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-              <Package className="w-6 h-6 text-blue-600 mx-auto mb-2" />
-              <span className="text-sm font-medium text-gray-900">Add Product</span>
+              <Target className="w-6 h-6 text-blue-600 mx-auto mb-2" />
+              <span className="text-sm font-medium text-gray-900">Yangi kampaniya</span>
             </button>
             <button className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-              <DollarSign className="w-6 h-6 text-green-600 mx-auto mb-2" />
-              <span className="text-sm font-medium text-gray-900">Create Invoice</span>
+              <Users className="w-6 h-6 text-green-600 mx-auto mb-2" />
+              <span className="text-sm font-medium text-gray-900">Mijoz qo'shish</span>
             </button>
             <button className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-              <Users className="w-6 h-6 text-purple-600 mx-auto mb-2" />
-              <span className="text-sm font-medium text-gray-900">Add Customer</span>
+              <Calendar className="w-6 h-6 text-purple-600 mx-auto mb-2" />
+              <span className="text-sm font-medium text-gray-900">Kontent taqvimi</span>
             </button>
             <button className="p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-              <AlertTriangle className="w-6 h-6 text-yellow-600 mx-auto mb-2" />
-              <span className="text-sm font-medium text-gray-900">View Alerts</span>
+              <BarChart3 className="w-6 h-6 text-yellow-600 mx-auto mb-2" />
+              <span className="text-sm font-medium text-gray-900">Hisobotlar</span>
             </button>
+          </div>
+        </div>
+
+        {/* Upcoming Campaigns */}
+        <div className="bg-white rounded-lg shadow-sm p-6">
+          <h3 className="text-lg font-semibold text-gray-900 mb-6">Kutilayotgan kampaniyalar</h3>
+          <div className="space-y-4">
+            <div className="flex items-center justify-between p-4 bg-blue-50 rounded-lg">
+              <div className="flex items-center space-x-3">
+                <Zap className="w-5 h-5 text-blue-600" />
+                <div>
+                  <h4 className="font-medium text-gray-900">Black Friday kampaniyasi</h4>
+                  <p className="text-sm text-gray-600">Boshlanish: 2024-11-20</p>
+                </div>
+              </div>
+              <span className="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">
+                Faol
+              </span>
+            </div>
+            <div className="flex items-center justify-between p-4 bg-green-50 rounded-lg">
+              <div className="flex items-center space-x-3">
+                <MessageSquare className="w-5 h-5 text-green-600" />
+                <div>
+                  <h4 className="font-medium text-gray-900">Instagram Stories kampaniyasi</h4>
+                  <p className="text-sm text-gray-600">Boshlanish: 2024-11-25</p>
+                </div>
+              </div>
+              <span className="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
+                Tayyorlanmoqda
+              </span>
+            </div>
           </div>
         </div>
       </div>

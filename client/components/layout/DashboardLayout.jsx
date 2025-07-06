@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { 
   Home, 
-  Package, 
+  Target, 
   DollarSign, 
   Users, 
   BarChart3, 
@@ -13,18 +13,25 @@ import {
   Bell,
   User,
   LogOut,
-  ChevronDown
+  ChevronDown,
+  Calendar,
+  MessageSquare,
+  FileText,
+  TrendingUp
 } from 'lucide-react';
 import { useAuth } from '../../hooks/useAuth';
 
 const navigation = [
   { name: 'Dashboard', href: '/', icon: Home },
-  { name: 'Inventory', href: '/inventory', icon: Package },
-  { name: 'Finance', href: '/finance', icon: DollarSign },
-  { name: 'CRM', href: '/crm', icon: Users },
-  { name: 'HR', href: '/hr', icon: Users },
-  { name: 'Reports', href: '/reports', icon: BarChart3 },
-  { name: 'Settings', href: '/settings', icon: Settings },
+  { name: 'Kampaniyalar', href: '/campaigns', icon: Target },
+  { name: 'Mijozlar', href: '/clients', icon: Users },
+  { name: 'Loyihalar', href: '/projects', icon: FileText },
+  { name: 'Kontent taqvimi', href: '/content', icon: Calendar },
+  { name: 'Hisob-kitob', href: '/billing', icon: DollarSign },
+  { name: 'Analitika', href: '/analytics', icon: TrendingUp },
+  { name: 'Jamoa', href: '/team', icon: Users },
+  { name: 'Hisobotlar', href: '/reports', icon: BarChart3 },
+  { name: 'Sozlamalar', href: '/settings', icon: Settings },
 ];
 
 export default function DashboardLayout({ children }) {
@@ -135,14 +142,14 @@ export default function DashboardLayout({ children }) {
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                       onClick={() => setUserMenuOpen(false)}
                     >
-                      Profile
+                      Profil
                     </Link>
                     <Link
                       href="/settings"
                       className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                       onClick={() => setUserMenuOpen(false)}
                     >
-                      Settings
+                      Sozlamalar
                     </Link>
                     <button
                       onClick={() => {
@@ -151,7 +158,7 @@ export default function DashboardLayout({ children }) {
                       }}
                       className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
                     >
-                      Sign out
+                      Chiqish
                     </button>
                   </div>
                 )}
